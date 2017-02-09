@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                         expand: true,
                         flatten: true,
                         src: ['bower_components/font-awesome/fonts/*'],
-                        dest: 'fonts/',
+                        dest: 'build/fonts/',
                         filter: 'isFile'
                     }
                 ]
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                     cwd: 'src/css/',
                     src: ['*.css'], // Actual pattern(s) to match.
                     dest: 'build/css/', // Destination path prefix.
-                    ext: '.min.js', // Dest filepaths will have this extension.
+                    ext: '.min.css', // Dest filepaths will have this extension.
                 }, ]
             }
         }

@@ -1,0 +1,61 @@
+html, body {
+    height: 100%;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.cover-html {
+    height: 100%;
+}
+
+.topBar {
+    height: 10%;
+    height: calc(55px);
+    border-bottom: 1px solid;
+}
+
+.menu-container {
+    float: left;
+    margin: 0 5px;
+    height: 100%;
+    vertical-align: middle;
+    border-left: 1px solid #3F51B5;
+    border-right: 1px solid #3F51B5;
+    padding: 10px;
+}
+.menu-container:hover {
+    background-color: #3F51B5;
+    border-left: 1px solid #C5CAE9;
+    border-right: 1px solid #C5CAE9;
+}
+
+.menu-link {
+    color:#FFF;
+}
+
+.menu-link:hover {
+    text-decoration: none;
+    color: #FFF;
+}
+
+
+
+.search-box {
+    width: 240px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 3px;
+    outline: none;
+    outline-style: none;
+    border:none;
+}
+
+.search-box:focus {
+    outline: none;
+    outline-style: none;
+    border:none;
+}
+
+.content-section {
+    height: 90%;
+    height: calc(100% - 50px);
+}
