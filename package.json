@@ -1,0 +1,33 @@
+{
+  "name": "udacity-api-project",
+  "version": "1.0.0",
+  "description": "Udactiy Front End Nanodegree Program Project",
+  "main": "app.js",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^2.1.0",
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ernsnl/Neighborhood-Map.git"
+  },
+  "keywords": [
+    "API",
+    "AJAX",
+    "JQuery",
+    "Knockout"
+  ],
+  "author": "Sinasi Eren Senel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ernsnl/Neighborhood-Map/issues"
+  },
+  "homepage": "https://github.com/ernsnl/Neighborhood-Map#readme"
+}
