@@ -205,14 +205,29 @@ function AddMarkers(list) {
             animation: google.maps.Animation.DROP,
             icon: '~/../icons/kappa.png_large'
         });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: ''
+        });
+
         allMarkers.push(marker);
-        element.makeItBounce = function(){
-          if (marker.getAnimation() !== null) {
-              marker.setAnimation(null);
-          } else {
-              marker.setAnimation(google.maps.Animation.BOUNCE);
-          }
+        element.makeItBounce = function() {
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
         };
-        marker.addListener('click', element.makeItBounce);
+
+        element.setMarker(marker);
+        element.setInfoWindow(infowindow);
+
+
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+            element.makeItBounce();
+        });
+
+
     });
 }

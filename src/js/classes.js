@@ -14,10 +14,20 @@ var Location = function(name, lat, lng, ctg, fav) {
     this.lat = lat;
     this.ctg = ctg;
     this.fav = fav;
+    this.marker = null;
+    this.infoWindow = null;
 };
 
 Location.prototype.makeItBounce = function() {
 
+};
+
+Location.prototype.setMarker = function(marker) {
+    this.marker = marker;
+};
+
+Location.prototype.setInfoWindow = function(infoWindow) {
+    this.infoWindow = infoWindow;
 };
 
 Location.prototype.getInfo = function() {
