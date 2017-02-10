@@ -50,8 +50,15 @@ function FiltersViewModel() {
     self.selectedLocation.subscribe(function(newValue) {
 
         allMarkers.forEach(function(element) {
-            element.setAnimation(null);
+            if (element instanceof google.maps.Marker)
+                element.setAnimation(null);
         });
+
+        allInfoWindows.forEach(function(element) {
+            if (element instanceof google.maps.InfoWindow)
+                element.close();
+        });
+
         if (newValue instanceof Location) {
             newValue.makeItBounce();
         }

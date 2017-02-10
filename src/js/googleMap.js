@@ -1,4 +1,4 @@
-var map, allMarkers;
+var map, allMarkers = [], allInfoWindows = [];
 
 function mapInit() {
     var istanbul = {
@@ -6,7 +6,7 @@ function mapInit() {
         lng: 28.9784
     };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
+        zoom: 11,
         center: istanbul,
         styles: [{
                 "elementType": "labels",
@@ -192,11 +192,17 @@ function mapInit() {
             {}
         ]
     });
+
+    google.maps.event.addDomListener(window, "resize", function() {
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(istanbul);
+    });
     setTimeout(AddMarkers(ExistingLocations), 2000);
 }
 
 function AddMarkers(list) {
     allMarkers = [];
+    allInfoWindows = [];
     list.forEach(function(element, index) {
         var latLng = new google.maps.LatLng(element.lat, element.lng);
         var marker = new google.maps.Marker({
@@ -211,6 +217,8 @@ function AddMarkers(list) {
         });
 
         allMarkers.push(marker);
+        allInfoWindows.push(infowindow);
+
         element.makeItBounce = function() {
             if (marker.getAnimation() !== null) {
                 marker.setAnimation(null);
@@ -221,10 +229,20 @@ function AddMarkers(list) {
 
         element.setMarker(marker);
         element.setInfoWindow(infowindow);
+        element.infoWindow.setContent(element.getInfo());
 
+        infowindow.addListener('closeclick', function() {
+            element.marker.setAnimation(null);
+        });
 
         marker.addListener('click', function() {
-            infowindow.open(map, marker);
+            allInfoWindows.forEach(function(infoW) {
+                infoW.close();
+            });
+            allMarkers.forEach(function(m){
+              m.setAnimation(null);
+            });
+            element.infoWindow.open(map, marker);
             element.makeItBounce();
         });
 

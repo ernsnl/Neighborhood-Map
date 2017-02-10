@@ -26,6 +26,10 @@ module.exports = function(grunt) {
                         dest: "src/css/bootstrap.css"
                     },
                     {
+                        src: ['bower_components/bootstrap/dist/js/bootstrap.js'],
+                        dest: "src/js/bootstrap.js"
+                    },
+                    {
                         src: ['bower_components/font-awesome/css/font-awesome.css'],
                         dest: 'src/css/font-awesome.css'
                     },
