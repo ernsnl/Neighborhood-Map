@@ -1,4 +1,4 @@
-var map;
+var map, allMarkers;
 
 function mapInit() {
     var istanbul = {
@@ -196,6 +196,7 @@ function mapInit() {
 }
 
 function AddMarkers(list) {
+    allMarkers = [];
     list.forEach(function(element, index) {
         var latLng = new google.maps.LatLng(element.lat, element.lng);
         var marker = new google.maps.Marker({
@@ -204,5 +205,14 @@ function AddMarkers(list) {
             animation: google.maps.Animation.DROP,
             icon: '~/../icons/kappa.png_large'
         });
+        allMarkers.push(marker);
+        element.makeItBounce = function(){
+          if (marker.getAnimation() !== null) {
+              marker.setAnimation(null);
+          } else {
+              marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        };
+        marker.addListener('click', element.makeItBounce);
     });
 }

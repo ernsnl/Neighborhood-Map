@@ -1,5 +1,5 @@
 var existingFilters = [
-    new Link('input', 'Name', 'search', function() {
+    new Link('select', 'Name', 'search', function() {
         //Add CB;
     }, 'searh-places'),
     new Link('click', 'Bars', 'beer', function() {
@@ -29,21 +29,33 @@ var existingFilters = [
 // Mujdat Gezen Theatre 40.9901° N, 29.0286° E
 // Basilica Cistern 41.0084° N, 28.9779° E
 var ExistingLocations = [
-  new Location('Topkapi Palace', '41.0115', '28.9834',3 , false),
-  new Location('İstanbul Archaeology Museums', '41.0117', '28.9813',3, true),
-  new Location('Ataturk Cultural Center', '41.0367','28.9876', 4, true),
-  new Location('Nevizade', '41.034748','28.977575', 1, true),
-  new Location('Nusr\'et', '41.0805','29.0335', 2, false),
-  new Location('Sakip Sabanci Museum', '41.1061','29.0557', 3, false),
-  new Location('Rahmi M. Koc Museum', '41.0428','28.9492', 3, true),
-  new Location('Kafe Pi', '41.0466','29.0073', 1, false),
-  new Location('Mujdat Gezen Theatre', '40.9901','29.0286', 4, false),
-  new Location('Basilica Cistern', '41.0084', '28.9779', 2, true)
+    new Location('Topkapi Palace', '41.0115', '28.9834', 3, false),
+    new Location('İstanbul Archaeology Museums', '41.0117', '28.9813', 3, true),
+    new Location('Ataturk Cultural Center', '41.0367', '28.9876', 4, true),
+    new Location('Nevizade', '41.034748', '28.977575', 1, true),
+    new Location('Nusr\'et', '41.0805', '29.0335', 2, false),
+    new Location('Sakip Sabanci Museum', '41.1061', '29.0557', 3, false),
+    new Location('Rahmi M. Koc Museum', '41.0428', '28.9492', 3, true),
+    new Location('Kafe Pi', '41.0466', '29.0073', 1, false),
+    new Location('Mujdat Gezen Theatre', '40.9901', '29.0286', 4, false),
+    new Location('Basilica Cistern', '41.0084', '28.9779', 2, true)
 ];
+
 
 function FiltersViewModel() {
     var self = this;
     self.filters = existingFilters;
+    self.locations = ExistingLocations;
+    self.selectedLocation = ko.observable();
+    self.selectedLocation.subscribe(function(newValue) {
+
+        allMarkers.forEach(function(element) {
+            element.setAnimation(null);
+        });
+        if (newValue instanceof Location) {
+            newValue.makeItBounce();
+        }
+    });
 }
 
 ko.applyBindings(new FiltersViewModel());

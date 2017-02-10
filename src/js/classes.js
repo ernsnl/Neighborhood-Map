@@ -16,6 +16,10 @@ var Location = function(name, lat, lng, ctg, fav) {
     this.fav = fav;
 };
 
+Location.prototype.makeItBounce = function() {
+
+};
+
 Location.prototype.getInfo = function() {
     switch (ctg) {
         case 1:
