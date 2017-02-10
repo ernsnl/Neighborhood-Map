@@ -42,12 +42,12 @@ Location.prototype.getInfo = function() {
             //Yelp, Facebook, Foursquare, Twitter
             var links = ['yelp', 'facebook', 'foursquare', 'twitter'];
             var navElement = '';
-            var infoElement = '<div id="'+self.name + '_' + 'info" class="tab-pane fade in active">#AJAX_INFO#</div>';
+            var infoElement = '<div id="' + self.name + '_' + 'info" class="tab-pane fade in active">#AJAX_INFO#</div>';
             navElement += '<li class="active"><a data-toggle="tab" href="#' + self.name + '_' + 'info"><i class="fa fa-info" aria-hidden="true"></i></a></li>';
 
             links.forEach(function(el) {
-                navElement += '<li><a onclick="getYelpInfo(' + self.lat + ',' + self.lng + ',' + '\'' + self.name + '\'' + ');" data-toggle="tab" href="#' + self.name + '_' + el + '"><i class="fa fa-' + el + '" aria-hidden="true"></i></a></li>';
-                infoElement += '<div id="'+self.name + '_' + el+ '" class="tab-pane fade">#AJAX_INFO#</div>';
+                navElement += '<li><a onclick="getSpecificInfo(' + '\'' + el + '\'' + ',' + self.lat + ',' + self.lng + ',' + '\'' + self.name + '\'' + ');" data-toggle="tab" href="#' + self.name + '_' + el + '"><i class="fa fa-' + el + '" aria-hidden="true"></i></a></li>';
+                infoElement += '<div id="' + self.name + '_' + el + '" class="tab-pane fade">#AJAX_INFO#</div>';
             });
             navContent += navElement;
             navContent += '</ul>';
@@ -59,19 +59,69 @@ Location.prototype.getInfo = function() {
         case 2:
             // For the Restaurants
             //Yelp, Facebook, Foursquare, Twitter, Tripadvisor
+            var links = ['yelp', 'facebook', 'foursquare', 'twitter', 'tripadvisor'];
+            var navElement = '';
+            var infoElement = '<div id="' + self.name + '_' + 'info" class="tab-pane fade in active">#AJAX_INFO#</div>';
+            navElement += '<li class="active"><a data-toggle="tab" href="#' + self.name + '_' + 'info"><i class="fa fa-info" aria-hidden="true"></i></a></li>';
+
+            links.forEach(function(el) {
+                navElement += '<li><a onclick="getSpecificInfo(' + '\'' + el + '\'' + ',' + self.lat + ',' + self.lng + ',' + '\'' + self.name + '\'' + ');" data-toggle="tab" href="#' + self.name + '_' + el + '"><i class="fa fa-' + el + '" aria-hidden="true"></i></a></li>';
+                infoElement += '<div id="' + self.name + '_' + el + '" class="tab-pane fade">#AJAX_INFO#</div>';
+            });
+            navContent += navElement;
+            navContent += '</ul>';
+            infoContent += infoElement;
+            infoContent += '</div>';
+            currentInfoWindow = currentInfoWindow.replace('%TAB%', navContent);
+            currentInfoWindow = currentInfoWindow.replace('#INFO#', infoContent);
             break;
         case 3:
             // For Museums
             // Facebook, Foursquare, Twitter, Tripadvisor, Wiki
+            var links = ['foursquare', 'facebook', 'twitter', 'tripadvisor','wikipedia-w'];
+            var navElement = '';
+            var infoElement = '<div id="' + self.name + '_' + 'info" class="tab-pane fade in active">#AJAX_INFO#</div>';
+            navElement += '<li class="active"><a data-toggle="tab" href="#' + self.name + '_' + 'info"><i class="fa fa-info" aria-hidden="true"></i></a></li>';
+
+            links.forEach(function(el) {
+                navElement += '<li><a onclick="getSpecificInfo(' + '\'' + el + '\'' + ',' + self.lat + ',' + self.lng + ',' + '\'' + self.name + '\'' + ');" data-toggle="tab" href="#' + self.name + '_' + el + '"><i class="fa fa-' + el + '" aria-hidden="true"></i></a></li>';
+                infoElement += '<div id="' + self.name + '_' + el + '" class="tab-pane fade">#AJAX_INFO#</div>';
+            });
+            navContent += navElement;
+            navContent += '</ul>';
+            infoContent += infoElement;
+            infoContent += '</div>';
+            currentInfoWindow = currentInfoWindow.replace('%TAB%', navContent);
+            currentInfoWindow = currentInfoWindow.replace('#INFO#', infoContent);
             break;
         case 4:
             // For Theatres
             //Yelp, Facebook, Foursquare, Twitter
+            var links = ['yelp', 'facebook', 'foursquare', 'twitter'];
+            var navElement = '';
+            var infoElement = '<div id="' + self.name + '_' + 'info" class="tab-pane fade in active">#AJAX_INFO#</div>';
+            navElement += '<li class="active"><a data-toggle="tab" href="#' + self.name + '_' + 'info"><i class="fa fa-info" aria-hidden="true"></i></a></li>';
+
+            links.forEach(function(el) {
+                navElement += '<li><a onclick="getSpecificInfo(' + '\'' + el + '\'' + ',' + self.lat + ',' + self.lng + ',' + '\'' + self.name + '\'' + ');" data-toggle="tab" href="#' + self.name + '_' + el + '"><i class="fa fa-' + el + '" aria-hidden="true"></i></a></li>';
+                infoElement += '<div id="' + self.name + '_' + el + '" class="tab-pane fade">#AJAX_INFO#</div>';
+            });
+            navContent += navElement;
+            navContent += '</ul>';
+            infoContent += infoElement;
+            infoContent += '</div>';
+            currentInfoWindow = currentInfoWindow.replace('%TAB%', navContent);
+            currentInfoWindow = currentInfoWindow.replace('#INFO#', infoContent);
             break;
         default:
             alert('Unidentified Selection')
     }
     return currentInfoWindow;
+};
+
+var getSpecificInfo = function(type, lat, lng, name) {
+    if (type == 'yelp')
+        getYelpInfo(lat, lng, name);
 };
 
 var getFacebookInfo = function() {

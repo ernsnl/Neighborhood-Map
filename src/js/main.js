@@ -1,23 +1,3 @@
-var existingFilters = [
-    new Link('select', 'Name', 'search', function() {
-        //Add CB;
-    }, 'searh-places'),
-    new Link('click', 'Bars', 'beer', function() {
-        //;
-    }),
-    new Link('click', 'Restaurants', 'cutlery', function() {
-        //;
-    }),
-    new Link('click', 'Museums/Exhibits', 'university', function() {
-        //;
-    }),
-    new Link('click', 'Cinemas/Theatres', 'film', function() {
-        //alert(this.type);
-    }),
-    new Link('click', 'Favorites', 'star', function() {
-        //alert(this.type);
-    })
-];
 // Topkapi Place 41.0115° N, 28.9834° E
 // İstanbul Archaeology Museums 41.0117° N, 28.9813° E
 // Ataturk Cultural Center 41.0367° N, 28.9876° E
@@ -41,14 +21,74 @@ var ExistingLocations = [
     new Location('Basilica Cistern', '41.0084', '28.9779', 2, true)
 ];
 
+var existingFilters = [
+    new Link('click', 'Refresh', 'refresh', function() {
+        ExistingLocations.forEach(function(el) {
+            el.marker.setOpacity(1);
+        });
+    }),
+    new Link('select', 'Name', 'search', function() {
+        //Add CB;
+    }, 'searh-places'),
+    new Link('click', 'Bars', 'beer', function() {
+        ExistingLocations.forEach(function(el) {
+            if (el.ctg == 1) {
+                el.marker.setOpacity(1);
+            } else {
+                el.marker.setOpacity(0.3);
+            }
+        });
+    }),
+    new Link('click', 'Restaurants', 'cutlery', function() {
+        ExistingLocations.forEach(function(el) {
+            if (el.ctg == 2) {
+                el.marker.setOpacity(1);
+            } else {
+                el.marker.setOpacity(0.3);
+            }
+        });;
+    }),
+    new Link('click', 'Museums/Exhibits', 'university', function() {
+        ExistingLocations.forEach(function(el) {
+            if (el.ctg == 3) {
+                el.marker.setOpacity(1);
+            } else {
+                el.marker.setOpacity(0.3);
+            }
+        });;
+    }),
+    new Link('click', 'Cinemas/Theatres', 'film', function() {
+        ExistingLocations.forEach(function(el) {
+            if (el.ctg == 4) {
+                el.marker.setOpacity(1);
+            } else {
+                el.marker.setOpacity(0.3);
+            }
+        });;
+    }),
+    new Link('click', 'Favorites', 'star', function() {
+        ExistingLocations.forEach(function(el) {
+            if (el.fav) {
+                el.marker.setOpacity(1);
+            } else {
+                el.marker.setOpacity(0.3);
+            }
+        });
+    })
+];
+
+
 
 function FiltersViewModel() {
     var self = this;
     self.filters = existingFilters;
-    self.locations = ExistingLocations;
+    self.chosenFilter = ko.observable();
+    self.applyFilter = function(filter) {
+        filter.cb();
+    }
+    self.locations = ko.observable(ExistingLocations);
     self.selectedLocation = ko.observable();
     self.selectedLocation.subscribe(function(newValue) {
-
         allMarkers.forEach(function(element) {
             if (element instanceof google.maps.Marker)
                 element.setAnimation(null);

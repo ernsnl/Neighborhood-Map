@@ -16,7 +16,7 @@
         <div class="row cover-html">
             <div class="col-xs-12 topBar dark-primary-color divider-color" data-bind="foreach : filters">
                 <div data-bind="if: type == 'click', visible: type =='click'" class="menu-container">
-                    <a class="text-primary-color menu-link btn btn-link" data-bind="click: cb, attr:{title: filter_text}" href="#">
+                    <a class="text-primary-color menu-link btn btn-link" data-bind="click: $root.applyFilter, attr:{title: filter_text}" href="#">
                         <i data-bind="attr: {class: 'fa fa-' + font_icon}" aria-hidden="true"></i>
                         <span data-bind="text : filter_text" class="hidden-md hidden-sm hidden-xs"></span></a>
                 </div>
@@ -35,9 +35,9 @@
 <script src="build/js/jquery.min.js" charset="utf-8"></script>
 <script src="build/js/bootstrap.min.js" charset="utf-8"></script>
 <script src="build/js/knockout.min.js" charset="utf-8"></script>
-<script src="src/js/classes.js" charset="utf-8"></script>
+<script src="build/js/classes.min.js" charset="utf-8"></script>
 <script src="build/js/main.min.js" charset="utf-8"></script>
-<script src="src/js/googleMap.js" charset="utf-8"></script>
+<script src="build/js/googleMap.min.js" charset="utf-8"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyH7rP5BYZ2Y4HIaqgTneRACUDo5yp2pY&callback=mapInit">
 </script>
 
