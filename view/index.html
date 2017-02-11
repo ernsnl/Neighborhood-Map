@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <title>Sinasi Eren Senel Locations</title>
-    <link rel="stylesheet" href="build/css/bootstrap.min.css">
-    <link rel="stylesheet" href="build/css/font-awesome.min.css">
-    <link rel="stylesheet" href="build/css/palette.min.css">
-    <link rel="stylesheet" href="build/css/style.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/palette.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
 </head>
 
@@ -31,13 +31,33 @@
 
     </div>
 </body>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '1712033829059939',
+            xfbml: true,
+            version: 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+    };
 
-<script src="build/js/jquery.min.js" charset="utf-8"></script>
-<script src="build/js/bootstrap.min.js" charset="utf-8"></script>
-<script src="build/js/knockout.min.js" charset="utf-8"></script>
-<script src="build/js/classes.min.js" charset="utf-8"></script>
-<script src="build/js/main.min.js" charset="utf-8"></script>
-<script src="build/js/googleMap.min.js" charset="utf-8"></script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script src="js/jquery.min.js" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" charset="utf-8"></script>
+<script src="js/knockout.min.js" charset="utf-8"></script>
+<script src="js/classes.min.js" charset="utf-8"></script>
+<script src="js/main.min.js" charset="utf-8"></script>
+<script src="js/googleMap.min.js" charset="utf-8"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyH7rP5BYZ2Y4HIaqgTneRACUDo5yp2pY&callback=mapInit">
 </script>
 

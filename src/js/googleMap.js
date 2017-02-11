@@ -209,7 +209,7 @@ function AddMarkers(list) {
             position: latLng,
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: '~/../icons/kappa.png_large'
+            icon: 'kappa.png_large'
         });
 
         var infowindow = new google.maps.InfoWindow({
