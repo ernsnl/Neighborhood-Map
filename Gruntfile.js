@@ -22,6 +22,10 @@ module.exports = function(grunt) {
                         dest: "src/js/knockout.js"
                     },
                     {
+                        src: ['bower_components/underscore/underscore.js'],
+                        dest: "src/js/underscore.js"
+                    },
+                    {
                         src: ['bower_components/bootstrap/dist/css/bootstrap.css'],
                         dest: "src/css/bootstrap.css"
                     },

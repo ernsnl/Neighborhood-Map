@@ -22,14 +22,14 @@ var ExistingLocations = [
 ];
 
 var existingFilters = [
+    new Link('select', 'Name', 'search', function() {
+        //Add CB;
+    }, 'searh-places'),
     new Link('click', 'Refresh', 'refresh', function() {
         ExistingLocations.forEach(function(el) {
             el.marker.setOpacity(1);
         });
-    }),
-    new Link('select', 'Name', 'search', function() {
-        //Add CB;
-    }, 'searh-places'),
+    }, 0),
     new Link('click', 'Bars', 'beer', function() {
         ExistingLocations.forEach(function(el) {
             if (el.ctg == 1) {
@@ -38,7 +38,7 @@ var existingFilters = [
                 el.marker.setOpacity(0.3);
             }
         });
-    }),
+    }, 1),
     new Link('click', 'Restaurants', 'cutlery', function() {
         ExistingLocations.forEach(function(el) {
             if (el.ctg == 2) {
@@ -47,7 +47,7 @@ var existingFilters = [
                 el.marker.setOpacity(0.3);
             }
         });;
-    }),
+    }, 2),
     new Link('click', 'Museums/Exhibits', 'university', function() {
         ExistingLocations.forEach(function(el) {
             if (el.ctg == 3) {
@@ -56,7 +56,7 @@ var existingFilters = [
                 el.marker.setOpacity(0.3);
             }
         });;
-    }),
+    }, 3),
     new Link('click', 'Cinemas/Theatres', 'film', function() {
         ExistingLocations.forEach(function(el) {
             if (el.ctg == 4) {
@@ -65,7 +65,7 @@ var existingFilters = [
                 el.marker.setOpacity(0.3);
             }
         });;
-    }),
+    }, 4),
     new Link('click', 'Favorites', 'star', function() {
         ExistingLocations.forEach(function(el) {
             if (el.fav) {
@@ -74,7 +74,7 @@ var existingFilters = [
                 el.marker.setOpacity(0.3);
             }
         });
-    })
+    }, 5)
 ];
 
 
@@ -83,10 +83,30 @@ function FiltersViewModel() {
     var self = this;
     self.filters = existingFilters;
     self.chosenFilter = ko.observable();
-    self.applyFilter = function(filter) {
-        filter.cb();
-    }
     self.locations = ko.observable(ExistingLocations);
+    self.applyFilter = function(filter) {
+        var copyExisting = [];
+        filter.cb();
+        if (filter.id > 0 && filter.id < 5) {
+            ExistingLocations.forEach(function(ele) {
+                if (filter.id == ele.ctg)
+                    copyExisting.push(ele)
+            });
+            self.locations(copyExisting);
+
+        } else if (filter.id == 5) {
+            ExistingLocations.forEach(function(ele) {
+                if (ele.fav)
+                    copyExisting.push(ele)
+            });
+            self.locations(copyExisting);
+        } else {
+            self.locations(ExistingLocations);
+        }
+
+
+    }
+
     self.selectedLocation = ko.observable();
     self.selectedLocation.subscribe(function(newValue) {
         allMarkers.forEach(function(element) {
@@ -101,6 +121,7 @@ function FiltersViewModel() {
 
         if (newValue instanceof Location) {
             newValue.makeItBounce();
+            newValue.infoWindow.open(map, newValue.marker);
         }
     });
 }

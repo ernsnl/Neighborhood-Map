@@ -8,8 +8,8 @@ html, body {
 }
 
 .topBar {
-    height: 10%;
-    height: calc(55px);
+    min-height: 10%;
+    min-height: calc(55px);
     border-bottom: 1px solid;
 }
 
@@ -55,8 +55,8 @@ html, body {
 }
 
 .content-section {
-    height: 90%;
-    height: calc(100% - 50px);
+    min-height: 90%;
+    min-height: calc(100% - 50px);
 }
 
 .info-section {

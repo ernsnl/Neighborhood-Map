@@ -132,8 +132,9 @@ var getSpecificInfo = function(type, lat, lng, name, id) {
             name: name
         },
         success: function(response) {
+            var currentContent = ExistingLocations[id - 1].infoWindow.getContent();
             console.log(response);
-            if (type == 'facebook') {
+            if (type == 'facebook' && currentContent.indexOf('#AJAX_INFO#') > -1) {
                 var ajax_info = '';
                 ajax_info += '<p class="info-name">' + response.name + '</p>';
                 ajax_info += '<p class="info-main-category"><strong>Main Category: </strong>' + response.category + '</p>';
@@ -146,26 +147,16 @@ var getSpecificInfo = function(type, lat, lng, name, id) {
                     sub = sub.substring(0, sub.length - 1);
                     ajax_info = ajax_info.replace('#SUBC#', sub);
                 }
-                $('#' + id + '_' + type).html(ajax_info);
+                if (ExistingLocations.length > 0) {
+
+                    currentContent = currentContent.replace("#AJAX_INFO#", ajax_info);
+                    console.log(currentContent);
+                    ExistingLocations[id - 1].infoWindow.setContent(currentContent);
+                }
             }
+        },
+        error: function(response) {
+            alert('Something went wrong!');
         }
     });
-
-    /*$.ajax(
-      {
-        url: 'https://graph.facebook.com/search?center=' + lat + ',' + lng,
-        method: 'GET',
-        dataType: 'json',
-        data:{
-          q: encodeURI(name),
-          type: 'place',
-          //center: lat + ',' + lng,
-          distance: 5000,
-          access_token:appToken
-        },
-        success:function(response){
-          console.log(response);
-        }
-      }
-    );*/
 };

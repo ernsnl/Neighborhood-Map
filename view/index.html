@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sinasi Eren Senel Locations</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -31,34 +32,14 @@
 
     </div>
 </body>
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId: '1712033829059939',
-            xfbml: true,
-            version: 'v2.8'
-        });
-        FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
 <script src="js/jquery.min.js" charset="utf-8"></script>
+<script src="js/underscore.min.js" charset="utf-8"></script>
 <script src="js/bootstrap.min.js" charset="utf-8"></script>
 <script src="js/knockout.min.js" charset="utf-8"></script>
 <script src="js/classes.min.js" charset="utf-8"></script>
 <script src="js/main.min.js" charset="utf-8"></script>
 <script src="js/googleMap.min.js" charset="utf-8"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyH7rP5BYZ2Y4HIaqgTneRACUDo5yp2pY&callback=mapInit">
+<script async defer onerror="mapError()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyH7rP5BYZ2Y4HIaqgTneRACUDo5yp2pY&callback=mapInit">
 </script>
 
 </html>

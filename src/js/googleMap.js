@@ -1,5 +1,9 @@
 var map, allMarkers = [], allInfoWindows = [];
 
+function mapError(){
+  alert("Cannot load google map");
+}
+
 function mapInit() {
     var istanbul = {
         lat: 41.0082,
